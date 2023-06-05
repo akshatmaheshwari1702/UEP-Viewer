@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../Resources/css/updatepassword.css">
+    <title>Update Password</title>
+</head>
+<body>
+    <div class="header">
+        <img src="../Resources/assets/UEP copy.png" alt="Logo">
+    </div>
+    <div class="subheader"></div>
+    <div class="container">
+        <div class="card">
+            <h2>Update Password</h2>
+            <p>Please enter your new password</p>
+
+            <form id="updatePasswordForm" onsubmit="handleFormSubmit(event)">
+                <input type="password" name="password" id="newPasswordInput" placeholder="Enter New Password" required><br>
+                <input type="password" name="confirmPassword" id="confirmPasswordInput" placeholder="Confirm Password" required><br>
+
+                <input type="submit" value="Update Password">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            const newPassword = document.getElementById("newPasswordInput").value;
+            const confirmPassword = document.getElementById("confirmPasswordInput").value;
+
+            if (newPassword !== confirmPassword) {
+                alert("Passwords do not match. Please make sure to enter the same password in both fields.");
+                return;
+            }
+
+            if (newPassword.length < 8) {
+                alert("Password must be at least 8 characters long.");
+                return;
+            }
+
+            if (!/[A-Z]/.test(newPassword)) {
+                alert("Password must contain at least one uppercase letter.");
+                return;
+            }
+
+            if (!/[a-z]/.test(newPassword)) {
+                alert("Password must contain at least one lowercase letter.");
+                return;
+            }
+
+            if (!/\d/.test(newPassword)) {
+                alert("Password must contain at least one digit.");
+                return;
+            }
+
+            // Redirect to the login page
+            window.location.href = "../index.html";
+        }
+    </script>
+</body>
+</html>
