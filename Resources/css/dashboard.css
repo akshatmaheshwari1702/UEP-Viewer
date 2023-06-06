@@ -102,8 +102,8 @@ body {
 
 #menu li i {
   color: rgb(0, 0, 0);
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   line-height: 30px;
   text-align: center;
   font-size: 14px;
@@ -163,27 +163,7 @@ body {
   }
 }
 
-/* Additional styles for larger screens can be added using additional media queries */
 
-/* Hamburger Icon Styles */
-.hamburger-icon {
-  display: none;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 30px;
-  height: 30px;
-  cursor: pointer;
-  z-index: 1000;
-}
-
-.hamburger-icon span {
-  display: block;
-  width: 100%;
-  height: 2px;
-  background-color: #000;
-  margin-bottom: 5px;
-}
 
 /* Adjust the side nav styles for smaller screens */
 @media screen and (max-width: 767px) {
@@ -197,23 +177,11 @@ body {
     background-color: #f5f5f5;
     z-index: 999;
   }
-
-  .hamburger-icon {
-    display: block;
-  }
-
-  /* Show the side nav when the hamburger icon is clicked */
-  .hamburger-icon.active + .sidenav {
-    display: block;
-  }
 }
 
 .dashboard-content {
-  margin-left: 300px;
-  padding: 20px;
+  padding: 20px 40px;
   height: 100vh;
-  overflow-y: scroll;
-
 }
 .dashboard-content h2 {
   margin-bottom: 10px;
@@ -243,6 +211,8 @@ body {
   display: flex;
   gap: 30px;
   align-items: flex-start;
+  /* justify-content: center;
+  align-items: center; */
 }
 
 .pie-chart {
@@ -254,7 +224,7 @@ body {
   top: 434px;
   left: 296px;
   width: 40%;
-  height: 90%;
+  height: 600px;
 }
 
 .graphs {
@@ -264,10 +234,12 @@ body {
   margin-bottom: 30px;
   /* top: 434px;
 left: 1022px;
-width: 359px;
-height: 220px; */
-width: 60%;
+width: 359px; */
+/* height: 220px; */
+width: 70%;
+
 }
+
 .graph {
   background-color: #fff;
   padding: 20px;
@@ -300,7 +272,7 @@ width: 60%;
 @media screen and (max-width: 1024px) {
   .number-cards {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 20px;
   }
   .reports-container {
@@ -311,9 +283,6 @@ width: 60%;
   .pie-chart {
     width: 380px !important;
     height: 380px !important;
-  }
-  .dashboard-content{
-    overflow-y: scroll;
   }
 }
 
