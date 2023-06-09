@@ -31,8 +31,8 @@
             flex-basis: 40%;
             top: 434px;
             left: 296px;
-            width: 40%;
-            height: 600px;
+            width: 60%;
+            height: 480px;
         }
 
         /* Hide the small sidebar by default for small screens
@@ -50,7 +50,7 @@
 
 <body class="">
     <nav class="bg-gray-800 py-2">
-        <div class="max-w-7xl mx-auto px-4">
+        <div class=" mx-auto px-12 lg:px-32">
             <div class="flex justify-between">
                 <div id="hamburger" class="flex items-center">
                     <img class="h-8 w-auto" src="../Resources/assets/UEP copy.png" alt="Logo" />
@@ -69,47 +69,47 @@
         </div>
     </nav>
     <div class="flex">
-        <div class="hidden md:flex w-[250px] custom-shadow pr-5">
+        <div class="hidden md:flex w-[300px] custom-shadow pr-5">
             <div class="">
                 <div>
                     <ul class="pt-10 flex flex-col gap-2">
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-2 hover:border-pink-800 pl-4 font-medium py-2 text-[18px]">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-500 hover:pl-3 pl-4 font-medium py-2 text-[18px]">
                             <i class="ri-home-4-fill"></i><a href="./dashboard.html">Reports</a>
                         </li>
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-2 hover:border-pink-800 pl-4 font-medium py-2 text-[18px]">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-medium py-2 text-[18px]">
                             <i class="ri-image-2-fill"></i><a href="./files_event.html">Files</a>
                         </li>
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-2 hover:border-pink-800 pl-4 font-medium py-2 text-[18px]">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-medium py-2 text-[18px]">
                             <i class="ri-calendar-2-line"></i><a href="#">Events</a>
                         </li>
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-2 hover:border-pink-800 pl-4 font-medium py-2 text-[18px]">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-medium py-2 text-[18px]">
                             <i class="ri-team-fill"></i><a href="#">Customer Accounts</a>
                         </li>
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-2 hover:border-pink-800 pl-4 font-medium py-2 text-[18px]">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-medium py-2 text-[18px]">
                             <i class="ri-user-5-fill"></i><a href="#">Staff</a>
                         </li>
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-2 hover:border-pink-800 pl-4 font-medium py-2 text-[18px]">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-medium py-2 text-[18px]">
                             <i class="ri-user-3-fill"></i><a href="#">Producers</a>
                         </li>
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-2 hover:border-pink-800 pl-4 font-medium py-2 text-[18px]">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-medium py-2 text-[18px]">
                             <i class="ri-list-unordered"></i><a href="#">Orders</a>
                         </li>
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-2 hover:border-pink-800 pl-4 font-medium py-2 text-[18px] font-medium">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-medium py-2 text-[18px] font-medium">
                             <i class="ri-chat-new-fill"></i><a href="#">Zendesk Chat</a>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
-        <div id="sidebarSmall" class=" fixed top-16 h-screen w-1/2 bg-gray-200 hidden">
+        <div id="sidebarSmall" class=" fixed top-16 h-screen w-1/2 bg-gray-200 hidden lg:hidden">
             <div>
                 <ul>
                     <li class="current active">
@@ -131,7 +131,7 @@
                 </ul>
             </div>
         </div>
-        <div class="w-full custom-bg flex flex-col gap-20 lg:pl-8 lg:py-8 p-4">
+        <div class="w-full custom-bg flex flex-col gap-4 lg:pl-8 lg:py-4 p-4">
             <div class="flex flex-col gap-2">
                 <h2 class="text-[32px] text-[#202020] font-medium">Report</h2>
                 <div class="grid grid-cols-2 gap-2 lg:flex lg:gap-5 lg:pr-20">
