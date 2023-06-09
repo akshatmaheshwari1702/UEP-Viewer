@@ -34,6 +34,16 @@
             width: 40%;
             height: 600px;
         }
+
+        /* Hide the small sidebar by default for small screens
+        #sidebarSmall {
+            display: none;
+        }
+
+        /* Show the small sidebar when it is not hidden */
+        /* #sidebarSmall:not(.hidden) {
+            display: block;
+        } */
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
@@ -99,8 +109,7 @@
                 </div>
             </div>
         </div>
-        <div id="sidebarSmall"
-            class="md:hidden fixed top-16 h-screen w-1/2 bg-gray-200  h-screen">
+        <div id="sidebarSmall" class=" fixed top-16 h-screen w-1/2 bg-gray-200 hidden">
             <div>
                 <ul>
                     <li class="current active">
@@ -261,14 +270,14 @@
             </div>
         </div>
         <script>
-            document.addEventListener("DOMContentLoaded", () => {
-                const hamburger = document.getElementById("hamburger");
+            function toggleSidebar() {
                 const sidebarSmall = document.getElementById("sidebarSmall");
-    
-                hamburger.addEventListener("click", () => {
-                    sidebarSmall.classList.toggle("hidden");
-                });
-            });
+                sidebarSmall.classList.toggle("hidden");
+            }
+
+            // Add an event listener to the hamburger icon
+            const hamburger = document.getElementById("hamburger");
+            hamburger.addEventListener("click", toggleSidebar);
         </script>
 </body>
 
