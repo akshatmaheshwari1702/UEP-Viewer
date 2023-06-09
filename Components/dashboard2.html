@@ -100,7 +100,7 @@
             </div>
         </div>
         <div id="sidebarSmall"
-            class="md:hidden fixed top-16 right-0 h-screen w-1/2 bg-gray-200 transform translate-x-full h-screen z-50">
+            class="md:hidden fixed top-16 h-screen w-1/2 bg-gray-200  h-screen">
             <div>
                 <ul>
                     <li class="current active">
@@ -266,7 +266,7 @@
                 const sidebarSmall = document.getElementById("sidebarSmall");
     
                 hamburger.addEventListener("click", () => {
-                    sidebarSmall.classList.toggle("sidebar-hidden");
+                    sidebarSmall.classList.toggle("hidden");
                 });
             });
         </script>
