@@ -5,7 +5,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
-    <title>Responsive Sidebar and Navbar</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Dashboard</title>
     <style>
         .sidebar {
             transition: transform 0.3s ease-in-out;
@@ -16,11 +17,20 @@
         }
 
         .custom-bg {
-            background-color: #F3F4F9;
+            background-color: #F3F4F9;   
         }
+        .custom-card {
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 2px 12px #0000000F;
+        border-radius: 10px;
+        opacity: 1;
+        }
+
 
         .custom-shadow {
             box-shadow: 0px 2px 14px #0000001a;
+            opacity: 1;
+            z-index: 2;
         }
 
         .pie-chart {
@@ -44,26 +54,79 @@
         /* #sidebarSmall:not(.hidden) {
             display: block;
         } */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            }
+
+            .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            }
+
+            .show {
+            display: block;
+            }
+
     </style>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        function toggleDropdown() {
+  var dropdownContent = document.getElementById("dropdownContent");
+  dropdownContent.classList.toggle("show");
+}
+
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+    </script>
 </head>
 
-<body class="">
-    <nav class="bg-gray-800 py-2">
-        <div class=" mx-auto px-12 lg:px-32">
+<body class="font-roboto">
+    <nav class="bg-gradient-to-r from-gray-900 to-gray-700 py-4">
+        <div class=" mx-auto px-14 lg:px-36">
             <div class="flex justify-between">
                 <div id="hamburger" class="flex items-center">
-                    <img class="h-8 w-auto" src="../Resources/assets/UEP copy.png" alt="Logo" />
+                    <img class="h-10 w-auto" src="../Resources/assets/UEP copy.png" alt="Logo" />
                 </div>
                 <div class="flex gap-4 items-center">
                     <div class="notification-icon">
                         <img src="../Resources/assets/Notification.png" alt="Notification Icon" />
                     </div>
-                    <img src="../Resources/assets/Oval.png" alt="Profile Image" />
-                    <div class="hidden">
-                        <a href="./updatepasword.html">Update Profile</a>
-                        <a href="../index.html" onclick="handleLogout()">Logout</a>
-                    </div>
+                    
+                    <div class="user-profile">
+                        <div class="dropdown">
+                            <img src="../Resources/assets/Oval.png" alt="Profile Image" class="dropbtn" onclick="toggleDropdown()"/>
+                          <!-- <p>Akshat Maheshwari</p> -->
+                          <div class="dropdown-content" id="dropdownContent">
+                            <a href="#">Designation</a>
+                            <hr>
+                            <a href="./updatepasword.html">Update Profile</a>
+                            <a href="../index.html" onclick="handleLogout()">Logout</a>
+                          </div>
+                        </div>
+                      </div>
+                      
                 </div>
             </div>
         </div>
@@ -74,7 +137,7 @@
                 <div>
                     <ul class="pt-10 flex flex-col gap-2">
                         <li
-                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-500 hover:pl-3 pl-4 font-medium py-2 text-[18px]">
+                            class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-500 hover:pl-3 pl-4 font-medium py-2 text-[18px] active">
                             <i class="ri-home-4-fill"></i><a href="./dashboard.html">Reports</a>
                         </li>
                         <li
@@ -151,82 +214,82 @@
             <div class="flex flex-col gap-2">
                 <h2 class="text-[32px] text-[#202020] font-medium">Report</h2>
                 <div class="grid grid-cols-2 gap-2 lg:flex lg:gap-5 lg:pr-20">
-                    <div class="lg:flex-1 bg-white py-5 px-6 rounded">
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
                         <h2 class="lg:text-3xl text-[#202020] font-medium">13,000</h2>
                         <p class="lg:text-lg text-[#202020] font-regular">Total Customers</p>
                     </div>
-                    <div class="lg:flex-1 bg-white py-5 px-6 rounded">
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
                         <h2 class="lg:text-3xl text-[#202020] font-medium">40M</h2>
-                        <p class="lg:text-lg text-[#202020] font-regular">Images Download</p>
+                        <p class="lg:text-lg text-[#202020] font-regular">Images Downloaded</p>
                     </div>
-                    <div class="lg:flex-1 bg-white py-5 px-6 rounded">
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
                         <h2 class="lg:text-3xl text-[#202020] font-medium">10M</h2>
                         <p class="lg:text-lg text-[#202020] font-regular">Videos Downloaded</p>
                     </div>
-                    <div class="lg:flex-1 bg-white py-5 px-6 rounded">
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
                         <h2 class="lg:text-3xl text-[#202020] font-medium">1200</h2>
                         <p class="lg:text-lg text-[#202020] font-regular">Event Created</p>
                     </div>
-                    <div class="lg:flex-1 bg-white py-5 px-6 rounded">
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
                         <h2 class="lg:text-3xl text-[#202020] font-medium">150</h2>
                         <p class="lg:text-lg text-[#202020] font-regular">Sales Report Count</p>
                     </div>
                 </div>
             </div>
+            
             <div class="w-full lg:pr-20">
                 <h2 class="text-[28px] text-[#202020] font-medium mb-2">Visual Reports</h2>
 
                 <div class="grid grid-cols-1 lg:flex gap-4">
                     <div class="lg:w-1/2">
                         <div class="pie-chart w-full">
-                            <canvas id="pieChart"></canvas>
-
-                            <script>
-                                // pie-Chart
-                                var ctx = document.getElementById("pieChart").getContext("2d");
-
-                                // Create the chart data
-                                var data = {
-                                    labels: ["Party Hub Pass", "Disco Dancer", "Sparkling Nights"],
-                                    datasets: [
-                                        {
-                                            data: [60, 58, 55],
-                                            backgroundColor: ["#F0582F", "#6EB1E1", "#71D456"],
-                                            borderWidth: 10,
-                                        },
-                                    ],
-                                };
-
-                                // Create the pie chart
-                                var myPieChart = new Chart(ctx, {
-                                    type: "pie",
-                                    data: data,
-                                    options: {
-                                        plugins: {
-                                            datalabels: {
-                                                color: "white",
-                                                font: {
-                                                    weight: "bold",
-                                                },
-                                                formatter: function (value, context) {
-                                                    return (
-                                                        context.chart.data.labels[context.dataIndex] +
-                                                        ": " +
-                                                        value +
-                                                        "%"
-                                                    );
-                                                },
-                                            },
-                                        },
+                            <canvas id="pieChart" class="w-64 h-64"></canvas>
+                          </div>                         
+                          <script>
+                            // pie-Chart
+                            var ctx = document.getElementById("pieChart").getContext("2d");
+                          
+                            // Create the chart data
+                            var data = {
+                              labels: ["Party Hub Pass", "Disco Dancer", "Sparkling Nights"],
+                              datasets: [
+                                {
+                                  data: [60, 58, 55],
+                                  backgroundColor: ["#F0582F", "#6EB1E1", "#71D456"],
+                                  borderWidth: 10,
+                                },
+                              ],
+                            };
+                          
+                            // Create the pie chart
+                            var myPieChart = new Chart(ctx, {
+                              type: "pie",
+                              data: data,
+                              options: {
+                                plugins: {
+                                  datalabels: {
+                                    color: "white",
+                                    font: {
+                                      weight: "bold",
                                     },
-                                });
-                            </script>
-                        </div>
+                                    formatter: function (value, context) {
+                                      return (
+                                        context.chart.data.labels[context.dataIndex] +
+                                        ": " +
+                                        value +
+                                        "%"
+                                      );
+                                    },
+                                  },
+                                },
+                              },
+                            });
+                          </script>                          
                     </div>
 
                     <div class="grid grid-cols-2 gap-4 lg:w-1/2">
                         <div class="bg-white py-5 px-6 rounded">
-                            <h3>All Downloads</h3>
+                            <h3 class="font-bold">All Downloads</h3>
                             <svg class="chart" viewBox="0 0 500 300">
                                 <polyline class="chart-line" points="50,250 150,180 250,220 350,250" />
                                 <circle class="chart-point" cx="50" cy="250" r="4" />
@@ -240,7 +303,7 @@
                             </svg>
                         </div>
                         <div class="bg-white py-5 px-6 rounded">
-                            <h3>Image Downloads</h3>
+                            <h3 class="font-bold">Image Downloads</h3>
                             <svg class="chart" viewBox="0 0 500 300">
                                 <polyline class="chart-line" points="50,250 150,180 250,220 350,250" />
                                 <circle class="chart-point" cx="50" cy="250" r="4" />
@@ -254,7 +317,7 @@
                             </svg>
                         </div>
                         <div class="bg-white py-5 px-6 rounded">
-                            <h3>Video Downloads</h3>
+                            <h3 class="font-bold">Video Downloads</h3>
                             <svg class="chart" viewBox="0 0 500 300">
                                 <polyline class="chart-line" points="50,250 150,180 250,220 350,250" />
                                 <circle class="chart-point" cx="50" cy="250" r="4" />
@@ -268,7 +331,7 @@
                             </svg>
                         </div>
                         <div class="bg-white py-5 px-6 rounded">
-                            <h3>Event Creation</h3>
+                            <h3 class="font-bold">Event Creation</h3>
                             <svg class="chart" viewBox="0 0 500 300">
                                 <polyline class="chart-line" points="50,250 150,180 250,220 350,250" />
                                 <circle class="chart-point" cx="50" cy="250" r="4" />

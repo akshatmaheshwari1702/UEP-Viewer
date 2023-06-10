@@ -177,6 +177,7 @@ body {
 .dashboard-content {
   padding: 20px;
   margin-bottom: -15px;
+  margin-left: 320px;
 
 }
 .dash-heading {
@@ -249,6 +250,7 @@ hr {
   display: flex;
   flex-wrap: wrap;
   gap: 15px;
+  margin-left: 320px;
 }
 
 .card {
