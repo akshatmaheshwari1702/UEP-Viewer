@@ -1,22 +1,111 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <link rel="stylesheet" href="../Resources/css/dashboard.css" />
-    <link
-      rel="stylesheet"
-      href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    />
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-eGc5wxCySTX1rxI6kOyGxP1SF6+st9L8kZKPOQ7eXrFOOPbPkKJIK1zii6cgw+Jf" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/chart.js-plugin-labels-dv/dist/chartjs-plugin-labels.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.min.js"></script>
     <title>Dashboard</title>
+    <style>
+        .sidebar {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar-hidden {
+            transform: translateX(-100%);
+        }
+
+        .custom-bg {
+            background-color: #F3F4F9;   
+        }
+        .custom-card {
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        box-shadow: 0px 2px 12px #0000000F;
+        border-radius: 10px;
+        opacity: 1;
+        }
+
+
+        .custom-shadow {
+            box-shadow: 0px 2px 14px #0000001a;
+            opacity: 1;
+            z-index: 2;
+        }
+
+        .pie-chart {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            flex-basis: 40%;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            }
+
+            .dropdown-content a:hover {
+            background-color: #f1f1f1;
+            }
+
+            .show {
+            display: block;
+            }
+            .notificationContent {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+            .notificationContent a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            }
+
+            .notificationContent a:hover {
+            background-color: #f1f1f1;
+            }
+            .show {
+            display: block;
+            }
+
+            li.active {
+                color: #FE077C;
+                border-left-width: 4px;
+                border-left-color: #FE077C;
+                /* padding-left: 5px; */
+                font-weight: 500;
+                /* margin-left: 8px; */
+}
+
+
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      // Check if the user is already logged in
+        // Check if the user is already logged in
       function checkLoggedIn() {
         var isLoggedIn = sessionStorage.getItem("isLoggedIn");
-
+  
         if (!isLoggedIn) {
           // Redirect to the login page if the user is not logged in
           window.location.href = "../index.html";
@@ -30,194 +119,494 @@
       }
       // Execute the checkLoggedIn function on page load
       window.addEventListener("load", checkLoggedIn);
+      function toggleSideNav() {
+      var sidenav = document.getElementById("sidenav");
+      sidenav.style.display = sidenav.style.display === "none" ? "block" : "none";
+    }
     </script>
-  </head>
-  <body>
-    <div class="navbar">
-      <div class="navbar-logo">
-        <img src="../Resources/assets/UEP copy.png" alt="UEPViewer" />
-      </div>
-      <div class="navbar-right">
-        <div class="notification-icon">
-          <img
-            src="../Resources/assets/Notification.png"
-            alt="Notification Icon"
-          />
-        </div>
-        <div class="profile-dropdown">
-          <img src="../Resources/assets/Oval.png" alt="Profile Image" />
-          <div class="dropdown-content">
-            <a href="./updatepasword.html">Update Profile</a>
-            <a href="../index.html" onclick="handleLogout()">Logout</a>
-          </div>
-        </div>
-      </div>
-    </div>
+</head>
 
-    <div class="sidenav">
-      <div id="menu">
-        <ul>
-          <li class="current active">
-            <i class="ri-home-4-fill"></i><a href="./dashboard.html">Reports</a>
-          </li>
-          <li>
-            <i class="ri-image-2-fill"></i
-            ><a href="./files_event.html">Files</a>
-          </li>
-          <li><i class="ri-calendar-2-line"></i><a href="#">Events</a></li>
-          <li><i class="ri-team-fill"></i><a href="#">Customer Accounts</a></li>
-          <li><i class="ri-user-5-fill"></i><a href="#">Staff</a></li>
-          <li><i class="ri-user-3-fill"></i><a href="#">Producers</a></li>
-          <li><i class="ri-list-unordered"></i><a href="#">Orders</a></li>
-          <li><i class="ri-chat-new-fill"></i><a href="#">Zendesk Chat</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="dashboard-content">
-      <h2>Report</h2>
-      <div class="number-cards">
-        <div class="card">
-          <h2>13,000</h2>
-          <p>Total Customers</p>
+<body class="font-roboto bg-gray-200">
+    <nav class="bg-gradient-to-r from-gray-900 to-gray-700 py-6">
+        <div class="mx-auto px-4 sm:px-14 lg:px-36">
+            <div class="flex gap-12 md:justify-between items-center">
+                <div id="hamburger" class="flex items-center">
+                    <img class="h-8 lg:h-12 w-auto" src="../Resources/assets/UEP copy.png" alt="Logo" />
+                </div>
+                <div class="flex gap-2 items-center cursor-pointer relative ">
+                    <div class="border-r border-gray-200 h-6"></div>
+                    <div class="notification-icon" id="notificationIcon" onclick="toggleNotification(event)">
+                        <img src="../Resources/assets/Notification.png" alt="Notification Icon" class="w-auto" />
+                    </div>
+                    <div class="border-r border-gray-200 h-6"></div>
+                    <div class="absolute top-full bg-white rounded-md shadow-md hidden" id="notificationContent">
+                        <a href="#" class="block py-2 px-4 text-gray-800 text-sm">Notification</a>
+                        <hr class="my-2">
+                        <a href="#" class="block py-2 px-4 text-gray-800 text-sm">Notification2</a>
+                    </div>
+                    <script>
+                        function toggleNotification(event) {
+                            event.stopPropagation();
+                            var notificationContent = document.getElementById("notificationContent");
+                            notificationContent.classList.toggle("hidden");
+                        }
+                    
+                        // Update the function name to avoid conflict with previous code
+                        function toggleDropdown(event) {
+                            event.stopPropagation();
+                            var dropdownContent = document.getElementById("notificationContent");
+                            dropdownContent.classList.toggle("hidden");
+                        }
+                    
+                        window.onclick = function(event) {
+                            var notificationContent = document.getElementById("notificationContent");
+                            if (event.target !== notificationContent && !notificationContent.contains(event.target)) {
+                                notificationContent.classList.add("hidden");
+                            }
+                        };
+                    </script>
+        
+        <div class="relative">
+            <div class="flex gap-1 items-center cursor-pointer" onclick="toggleDropdown(event)">
+                <img src="../Resources/assets/Oval.png" alt="Profile Image" class="dropbtn h-8 w-auto ml-2" />
+                <div class="text-center">
+                    <p class="text-xs lg:text-sm text-white font-bold">Chris Gayle</p>
+                    <p class="text-xs lg:text-xs text-gray-400">Admin</p>
+                </div>
+                <span class="">
+                    <i class="ri-arrow-down-s-fill text-gray-400 transform transition-transform" x-bind:class="{ 'rotate-180': isOpen }"></i>
+                </span>
+            </div>
+            <div class="absolute right-0 top-full mt-2 bg-white rounded-md shadow-md hidden" id="dropdownContent">
+                <a href="./updatepassword.html" class="block py-2 px-4 text-gray-800 text-sm">Update Profile</a>
+                <hr class="pl-2">
+                <a href="../index.html" onclick="handleLogout()" class="block py-2 px-4 text-gray-800 text-sm">Logout</a>
+            </div>
+            <script>
+                function toggleDropdown(event) {
+                    event.stopPropagation();
+                    var dropdownContent = document.getElementById("dropdownContent");
+                    dropdownContent.classList.toggle("hidden");
+                }
+        
+                window.onclick = function(event) {
+                    var dropdownContent = document.getElementById("dropdownContent");
+                    if (event.target !== dropdownContent && !dropdownContent.contains(event.target)) {
+                        dropdownContent.classList.add("hidden");
+                    }
+                }
+            </script>
         </div>
-        <div class="card">
-          <h2>40M</h2>
-          <p>Images Download</p>
+        
+        
+                </div>
+            </div>
         </div>
-        <div class="card">
-          <h2>10M</h2>
-          <p>Videos Downloaded</p>
+    </nav>
+    
+        
+    <div class="flex">
+        <div class="hidden lg:flex w-[300px] custom-shadow pr-5 h-screen bg-white bg-no-repeat bg-[#FFFFFF] bg-opacity-100 shadow-md">
+            <div class="p-6">
+                <ul class="pt-10 flex flex-col gap-2">
+                    <li class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-500 hover:pl-3 pl-4 font-normal py-2 text-[18px] active">
+                        <i class="ri-home-4-fill"></i>
+                        <a href="./dashboard.html">Reports</a>
+                    </li>
+                    <li class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-image-2-fill"></i>
+                        <a href="./files_event.html">Files</a>
+                    </li>
+                    <li class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-calendar-2-line"></i>
+                        <a href="#">Events</a>
+                    </li>
+                    <li class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-team-fill"></i>
+                        <a href="#">Customer Accounts</a>
+                    </li>
+                    <li class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-user-5-fill"></i>
+                        <a href="#">Staff</a>
+                    </li>
+                    <li class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-user-3-fill"></i>
+                        <a href="#">Producers</a>
+                    </li>
+                    <li class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-list-unordered"></i>
+                        <a href="#">Orders</a>
+                    </li>
+                    <li class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-chat-new-fill"></i>
+                        <a href="#">Zendesk Chat</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="card">
-          <h2>1200</h2>
-          <p>Event Created</p>
+        
+        <div id="sidebarSmall" class="fixed top-16 h-screen w-1/2 md:w-2/5 bg-gray-200 hidden lg:hidden bg-[#FFFFFF] bg-opacity-100 shadow-md">
+            <div>
+                <ul class="pt-10 flex flex-col gap-2">
+                    <li
+                        class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-500 hover:pl-3 pl-4 font-normal py-2 text-[18px] active">
+                        <i class="ri-home-4-fill"></i><a href="./dashboard.html">Reports</a>
+                    </li>
+                    <li
+                        class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-image-2-fill"></i><a href="./files_event.html">Files</a>
+                    </li>
+                    <li
+                        class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-calendar-2-line"></i><a href="#">Events</a>
+                    </li>
+                    <li
+                        class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-team-fill"></i><a href="#">Customer Accounts</a>
+                    </li>
+                    <li
+                        class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-user-5-fill"></i><a href="#">Staff</a>
+                    </li>
+                    <li
+                        class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-user-3-fill"></i><a href="#">Producers</a>
+                    </li>
+                    <li
+                        class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px]">
+                        <i class="ri-list-unordered"></i><a href="#">Orders</a>
+                    </li>
+                    <li
+                        class="flex gap-2 items-center hover:text-pink-500 hover:border-l-4 hover:border-pink-800 hover:pl-3 pl-4 font-normal py-2 text-[18px] font-medium">
+                        <i class="ri-chat-new-fill"></i><a href="#">Zendesk Chat</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="card">
-          <h2>150</h2>
-          <p>Sales Report Count</p>
+        <div class="w-full flex flex-col gap-4 lg:pl-8 lg:py-4 p-4">
+            <div class="flex flex-col gap-2">
+                <h2 class="text-[32px] text-[#202020] font-medium">Reports</h2>
+                <div class="grid grid-cols-2 gap-2 lg:flex lg:gap-5 lg:pr-20">
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
+                        <h2 class="lg:text-3xl text-[#202020] font-medium">13,000</h2>
+                        <p class="lg:text-lg text-[#202020] font-normal">Total Customers</p>
+                    </div>
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
+                        <h2 class="lg:text-3xl text-[#202020] font-medium">40M</h2>
+                        <p class="lg:text-lg text-[#202020] font-normal">Images Downloaded</p>
+                    </div>
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
+                        <h2 class="lg:text-3xl text-[#202020] font-medium">10M</h2>
+                        <p class="lg:text-lg text-[#202020] font-normal">Videos Downloaded</p>
+                    </div>
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
+                        <h2 class="lg:text-3xl text-[#202020] font-medium">1200</h2>
+                        <p class="lg:text-lg text-[#202020] font-normal">Event Created</p>
+                    </div>
+                    <div class="lg:flex-1 bg-white py-5 px-6 rounded custom-card">
+                        <h2 class="lg:text-3xl text-[#202020] font-medium">150</h2>
+                        <p class="lg:text-lg text-[#202020] font-normal">Sales Report Count</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="w-full lg:pr-20">
+                <h2 class="text-[28px] text-[#202020] font-medium mb-2">Visual Reports</h2>
+
+                <div class="grid grid-cols-1 lg:flex gap-4">
+                    <div class="lg:w-1/2">
+                        <div class="pie-chart w-full h-full">
+                            <canvas id="pieChart" class="w-64 h-64"></canvas>
+                          </div>                         
+                          <script>
+                            const txt_margin = 15;
+                            const ptx1 = document.getElementById('pieChart').getContext('2d');
+                            const pie_data = {
+                            labels: [
+                            'Party Hub Pass',
+                            'Disco Dancer',
+                            'Sparkling Nights',
+                            ],
+                            datasets: [{
+                            data: [591,480,412],
+                            label: 'My First Dataset',
+                            backgroundColor: [
+                            '#6EB1E1',
+                            '#71D456',
+                            "#F0582F",
+                            ],
+                            
+                            hoverOffset: 10
+                            }]
+                            };
+                            
+                            
+                             const myPieChart = new Chart(ptx1, {
+                            type: 'pie',
+                            data: pie_data,
+                            
+                            options: {
+                            
+                            offset:15,
+                            layout:{
+                            padding : 13.5,
+                            },
+                            
+                            maintainAspectRatio: false,
+                            plugins: {
+                            
+                            legend: {
+                            labels: {
+                            fontSize: 20, 
+                            fontColor: 'white'
+                            },
+                            },
+                            
+                            labels: {
+                            render: (args) => {
+                            return args.value + ' views';
+                            },
+                            fontSize: 14,
+                            fontColor: 'white',
+                            position: 'inside',
+                            textMargin: txt_margin,
+                            },
+                            
+                            datalabels: {
+                            formatter: (value, ctx) => {
+                            
+                            const datapoints = ctx.chart.data.datasets[0].data
+                            const total = datapoints.reduce((total, datapoint) => total + datapoint, 0)
+                            const percentage = value / total * 100
+                            return percentage.toFixed(0) + "%";
+                            
+                            },
+                            color: '#fff', 
+                            font: {
+                            weight: '400',
+                            size: 14,
+                            },
+                            },
+                            legend: {
+                            display: true,
+                            position: 'right',
+                            align: "center",
+                            
+                            
+                            labels: {
+                            usePointStyle: true,
+                            pointStyle: "circle",
+                            fontColor: '#fff',
+                            boxWidth: 6,
+                            boxHeight: 6,
+                            borderRadius: "50",
+                            }
+                            },
+                            },
+                            responsive: true,
+                            rotation : 0
+                            },
+                            responsive : true,
+                            });
+                            
+                            
+                                </script>
+                    </div>
+
+                    <div class="lg:w-1/2">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <div class="bg-white py-5 px-6 rounded shadow-md">
+                                <h3 class="font-semibold mb-2">All Downloads</h3>
+                                <div class="chart-container">
+                                  <canvas id="myChart"></canvas>
+                                </div>
+                                <script>
+                                  // Create a line chart
+                                  var ctx = document.getElementById('myChart').getContext('2d');
+                                  var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                      labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                                      datasets: [{
+                                        data: [10, 15, 7, 12],
+                                        borderColor: '#FE077C',
+                                        fill: false,
+                                        tension: 0.5,
+                                      }]
+                                    },
+                                    options: {
+                                      responsive: true,
+                                      maintainAspectRatio: false, // Added for responsiveness
+                                      scales: {
+                                        y: {
+                                          beginAtZero: true,
+                                          grid: { display: false },
+                                        },
+                                        x: {
+                                          grid: { display: false },
+                                        }
+                                      },
+                                      plugins: {
+                                        legend: { // Removed 's' from 'legends'
+                                          display: false,
+                                        },
+                                        datalabels: {
+                                          display: false,
+                                        }
+                                      }
+                                    }
+                                  });
+                                </script>
+                              </div>
+                            <div class="bg-white py-5 px-6 rounded shadow-md">
+                                <h3 class="font-semibold mb-2">Image Downloads</h3>
+                                <div class="chart-container">
+                                  <canvas id="myChart1"></canvas>
+                                </div>
+                                <script>
+                                  // Create a line chart
+                                  var ctx = document.getElementById('myChart1').getContext('2d');
+                                  var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                      labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                                      datasets: [{
+                                        data: [15, 11, 7, 12],
+                                        borderColor: '#FE077C',
+                                        fill: false,
+                                        tension: 0.5,
+                                      }]
+                                    },
+                                    options: {
+                                      responsive: true,
+                                      maintainAspectRatio: false, // Added for responsiveness
+                                      scales: {
+                                        y: {
+                                          beginAtZero: true,
+                                          grid: { display: false },
+                                        },
+                                        x: {
+                                          grid: { display: false },
+                                        }
+                                      },
+                                      plugins: {
+                                        legend: { // Removed 's' from 'legends'
+                                          display: false,
+                                        },
+                                        datalabels: {
+                                          display: false,
+                                        }
+                                      }
+                                    }
+                                  });
+                                </script>
+                              </div>
+                            <div class="bg-white py-5 px-6 rounded shadow-md">
+                                <h3 class="font-semibold mb-2">Video Downloads</h3>
+                                <div class="chart-container">
+                                  <canvas id="myChart2"></canvas>
+                                </div>
+                                <script>
+                                  // Create a line chart
+                                  var ctx = document.getElementById('myChart2').getContext('2d');
+                                  var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                      labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                                      datasets: [{
+                                        data: [5, 15, 7, 2],
+                                        borderColor: '#FE077C',
+                                        fill: false,
+                                        tension: 0.5,
+                                      }]
+                                    },
+                                    options: {
+                                      responsive: true,
+                                      maintainAspectRatio: false, // Added for responsiveness
+                                      scales: {
+                                        y: {
+                                          beginAtZero: true,
+                                          grid: { display: false },
+                                        },
+                                        x: {
+                                          grid: { display: false },
+                                        }
+                                      },
+                                      plugins: {
+                                        legend: { // Removed 's' from 'legends'
+                                          display: false,
+                                        },
+                                        datalabels: {
+                                          display: false,
+                                        }
+                                      }
+                                    }
+                                  });
+                                </script>
+                              </div>
+                            <div class="bg-white py-5 px-6 rounded shadow-md">
+                                <h3 class="font-semibold mb-2">Event Creation</h3>
+                                <div class="chart-container">
+                                  <canvas id="myChart3"></canvas>
+                                </div>
+                                <script>
+                                  // Create a line chart
+                                  var ctx = document.getElementById('myChart3').getContext('2d');
+                                  var myChart = new Chart(ctx, {
+                                    type: 'line',
+                                    data: {
+                                      labels: ['Jan', 'Feb', 'Mar', 'Apr'],
+                                      datasets: [{
+                                        data: [5, 15, 9, 3],
+                                        borderColor: '#FE077C',
+                                        fill: false,
+                                        tension: 0.5,
+                                      }]
+                                    },
+                                    options: {
+                                      responsive: true,
+                                      maintainAspectRatio: false, // Added for responsiveness
+                                      scales: {
+                                        y: {
+                                          beginAtZero: true,
+                                          grid: { display: false },
+                                        },
+                                        x: {
+                                          grid: { display: false },
+                                        }
+                                      },
+                                      plugins: {
+                                        legend: { // Removed 's' from 'legends'
+                                          display: false,
+                                        },
+                                        datalabels: {
+                                          display: false,
+                                        }
+                                      }
+                                    }
+                                  });
+                                </script>
+                              </div>
+                              
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <script>
+            function toggleSidebar() {
+                const sidebarSmall = document.getElementById("sidebarSmall");
+                sidebarSmall.classList.toggle("hidden");
+            }
 
-      <h2>Visual Reports</h2>
+            // Add an event listener to the hamburger icon
+            const hamburger = document.getElementById("hamburger");
+            hamburger.addEventListener("click", toggleSidebar);
+        </script>
+</body>
 
-      <div class="reports-container">
-        <div class="pie-chart">
-          <canvas id="pieChart"></canvas>
+</html>
 
-          <script>
-            // pie-Chart
-            var ctx = document.getElementById("pieChart").getContext("2d");
+</body>
 
-            // Create the chart data
-            var data = {
-              labels: ["Party Hub Pass", "Disco Dancer", "Sparkling Nights"],
-              datasets: [
-                {
-                  data: [60, 58, 55],
-                  backgroundColor: ["#F0582F", "#6EB1E1", "#71D456"],
-                  borderWidth: 10,
-                },
-              ],
-            };
-
-            // Create the pie chart
-            var myPieChart = new Chart(ctx, {
-              type: "pie",
-              data: data,
-              options: {
-                plugins: {
-                  datalabels: {
-                    color: "white",
-                    font: {
-                      weight: "bold",
-                    },
-                    formatter: function (value, context) {
-                      return (
-                        context.chart.data.labels[context.dataIndex] +
-                        ": " +
-                        value +
-                        "%"
-                      );
-                    },
-                  },
-                },
-              },
-            });
-          </script>
-        </div>
-
-        <div class="graphs">
-          <div class="graph">
-            <h3>All Downloads</h3>
-            <svg class="chart" viewBox="0 0 500 300">
-              <polyline
-                class="chart-line"
-                points="50,250 150,180 250,220 350,250"
-              />
-              <circle class="chart-point" cx="50" cy="250" r="4" />
-              <circle class="chart-point" cx="150" cy="180" r="4" />
-              <circle class="chart-point" cx="250" cy="220" r="4" />
-              <circle class="chart-point" cx="350" cy="250" r="4" />
-              <text x="45" y="265" dy="5">Jan</text>
-              <text x="145" y="265" dy="5">Feb</text>
-              <text x="245" y="265" dy="5">Mar</text>
-              <text x="345" y="265" dy="5">Apr</text>
-            </svg>
-          </div>
-          <div class="graph">
-            <h3>Image Downloads</h3>
-            <svg class="chart" viewBox="0 0 500 300">
-              <polyline
-                class="chart-line"
-                points="50,250 150,180 250,220 350,250"
-              />
-              <circle class="chart-point" cx="50" cy="250" r="4" />
-              <circle class="chart-point" cx="150" cy="180" r="4" />
-              <circle class="chart-point" cx="250" cy="220" r="4" />
-              <circle class="chart-point" cx="350" cy="250" r="4" />
-              <text x="45" y="265" dy="5">Jan</text>
-              <text x="145" y="265" dy="5">Feb</text>
-              <text x="245" y="265" dy="5">Mar</text>
-              <text x="345" y="265" dy="5">Apr</text>
-            </svg>
-          </div>
-          <div class="graph">
-            <h3>Video Downloads</h3>
-            <svg class="chart" viewBox="0 0 500 300">
-              <polyline
-                class="chart-line"
-                points="50,250 150,180 250,220 350,250"
-              />
-              <circle class="chart-point" cx="50" cy="250" r="4" />
-              <circle class="chart-point" cx="150" cy="180" r="4" />
-              <circle class="chart-point" cx="250" cy="220" r="4" />
-              <circle class="chart-point" cx="350" cy="250" r="4" />
-              <text x="45" y="265" dy="5">Jan</text>
-              <text x="145" y="265" dy="5">Feb</text>
-              <text x="245" y="265" dy="5">Mar</text>
-              <text x="345" y="265" dy="5">Apr</text>
-            </svg>
-          </div>
-          <div class="graph">
-            <h3>Event Creation</h3>
-            <svg class="chart" viewBox="0 0 500 300">
-              <polyline
-                class="chart-line"
-                points="50,250 150,180 250,220 350,250"
-              />
-              <circle class="chart-point" cx="50" cy="250" r="4" />
-              <circle class="chart-point" cx="150" cy="180" r="4" />
-              <circle class="chart-point" cx="250" cy="220" r="4" />
-              <circle class="chart-point" cx="350" cy="250" r="4" />
-              <text x="45" y="265" dy="5">Jan</text>
-              <text x="145" y="265" dy="5">Feb</text>
-              <text x="245" y="265" dy="5">Mar</text>
-              <text x="345" y="265" dy="5">Apr</text>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
 </html>
