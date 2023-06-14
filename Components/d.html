@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.15/dist/tailwind.min.css" rel="stylesheet">
+  <title>Dashboard</title>
+</head>
+
+<body class="bg-gray-200">
+  <!-- Navbar -->
+  <header class="bg-white p-4 flex items-center justify-between">
+    <div class="flex items-center">
+      <img src="logo.png" alt="Logo" class="w-8 h-8 mr-2">
+      <span class="font-bold text-lg">Dashboard</span>
+    </div>
+    <div class="flex items-center">
+      <a href="#" class="text-gray-600 mr-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 13c-2.5 0-4.753-.942-6.472-2.472C4.441 9.753 3.5 7.5 3.5 5.004c0-2.286 1.316-3.718 2.601-4.15C6.17.264 7.49 0 12 0c4.51 0 5.831.263 6.899.854C19.184 1.286 20.5 2.72 20.5 5.004 20.5 7.5 19.559 9.753 17.972 10.528 16.253 12.058 14 13 12 13z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M16 21c-.493-.178-.954-.417-1.378-.724C13.68 20.631 12.37 21 12 21c-.37 0-1.68-.369-2.622-.724C8.954 20.583 8.493 20.822 8 21H6c-1.105 0-2-.895-2-2v-1c0-1.105.895-2 2-2h12c1.105 0 2 .895 2 2v1c0 1.105-.895 2-2 2h-2z" />
+        </svg>
+      </a>
+      <div class="relative">
+        <button class="text-gray-600 focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+        <div class="absolute right-0 mt-2 w-48 bg-white border rounded-lg shadow-md">
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Update Profile</a>
+          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Logout</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Body -->
+  <main class="p-4 flex">
+    <!-- Sidebar -->
+    <aside class="bg-gray-900 text-white p-4 w-1/5">
+      <nav class="space-y-4">
+        <a href="#" class="flex items-center p-2 rounded hover:bg-gray-800">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M4 6h16M4 12h8m-8 6h16" />
+          </svg>
+          <span class="ml-2">Dashboard</span>
+        </a>
+        <a href="#" class="flex items-center p-2 rounded hover:bg-gray-800">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+          <span class="ml-2">Reports</span>
+        </a>
+        <a href="#" class="flex items-center p-2 rounded hover:bg-gray-800">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24"
+            stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
+          </svg>
+          <span class="ml-2">Notifications</span>
+        </a>
+        <!-- Add more sidebar items as needed -->
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <div class="flex-1 p-4">
+      <div>
+        <h1 class="text-2xl font-semibold mb-4">Report</h1>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 mb-4">
+        <!-- Cards -->
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <!-- Repeat the card div for each card (5 in total) -->
+      </div>
+      <div>
+        <h1 class="text-2xl font-semibold mb-4">Visual Charts</h1>
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Pie Chart -->
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Pie Chart content -->
+        </div>
+        <!-- Repeat the card div for each card (4 in total) -->
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <div class="bg-white p-4 rounded shadow">
+          <!-- Card content -->
+        </div>
+        <!-- Repeat the card div for each card (4 in total) -->
+      </div>
+    </div>
+  </main>
+</body>
+
+</html>
